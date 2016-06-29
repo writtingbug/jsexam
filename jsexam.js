@@ -71,10 +71,50 @@
 	}, 0);
 	console.log('three');
 // __________________________________________
+	(function(x){
+	    delete x;
+	    alert(x);
+	})(1+5);//6,delete only have effect with an object property
 // __________________________________________
+	var a = 0,b = 0;
+	function A(a){
+		A = function(b){
+			console.log(a + b++)
+		}
+		console.log(a);
+	}
+
+	A(1);//1,A have changed
+	A(2);//3
 // __________________________________________
+	var a = 25;
+	(function(){
+		alert(a);//undefined
+		var a = 30;
+	})();
 // __________________________________________
+	this.a = 20;
+	var test = {
+		a : 40,
+		init : function(){
+			function go(){
+				// this.a = 60;
+				console.log(this.a);
+			}
+			go.prototype.a = 50;
+			return go;
+		}
+	};
+	var p = test.init();
+	p();
+	new(test.init())();
 // __________________________________________
+	function test(m){
+		m = {v : 5}
+	}
+	var m = {k : 30};
+	test(m);
+	alert(m.k);
 // __________________________________________
 // __________________________________________
 // __________________________________________
